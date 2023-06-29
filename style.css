@@ -1,0 +1,12 @@
+#map{
+    width: 500px;
+}
+
+@media (max-width: 800px) {
+    #map{
+        width: 100%;
+    }
+    #heading{
+        color: red;
+    }
+}

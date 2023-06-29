@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Find the buried treasure!</title>
+    <title>Найди закопанное сокровище!</title>
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 id="heading">Find the buried treasure!</h1>
-    <img id="map" width=800 height=800 src="./img/treasuremap.webp">
+    <h1 id="heading">Найди закопанное сокровище!</h1>
+    <img id="map" src="./img/treasuremap.webp">
 
     <p id="distance"></p>
     <p id="clicks-remaining"></p>
@@ -28,29 +30,32 @@
     // Get a string representing the distance
     var getDistanceHint = function (distance) {
       if (distance < 10) {
-        return "Boiling hot!";
+        return "Кипяток!";
       } else if (distance < 20) {
-        return "Really hot";
+        return "Очень горячо";
       } else if (distance < 40) {
-        return "Hot";
+        return "Горячо";
       } else if (distance < 80) {
-        return "Warm";
+        return "Тепло";
       } else if (distance < 160) {
-        return "Cold";
+        return "Холодно";
       } else if (distance < 320) {
-        return "Really cold";
+        return "Очень холодно";
       } else if (distance < 640) {
-        return "Really REALLY cold - BRRRRRR";
+        return "Очень ОЧЕНЬ холодно - БРРРРРР!";
       } else {
-        return "Freezing!";
+        return "Оледенел!";
       }
     };
 
     // Set up our variables
-    var width = 800;
-    var height = 800;
+    var picture = document.getElementById('map');
+    var width = picture.offsetWidth;
+    var height = picture.offsetHeight;
     var clicks = 0;
     var clickLimit = 20;
+    console.log(height);
+    console.log(width);
 
     // Create a random target location
     var target = {
@@ -76,11 +81,11 @@
       $("#distance").text(distanceHint);
 
       // Update the #clicks-remaining element with the number of clicks remaining
-      $("#clicks-remaining").text(clickLimit - clicks);
+      $("#clicks-remaining").text(`Осталось попыток: ${clickLimit - clicks}`);
 
       // If the click was close enough, tell them they won
       if (distance < 8) {
-        alert("Found the treasure in " + clicks + " clicks!");
+        alert("Сокровише найдено за " + clicks + " попыток!");
       }
     });
     </script>
