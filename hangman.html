@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Canvas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виселица</title>
+    <link rel="shortcut icon" href="./hang.png">
 </head>
 
 <body>
@@ -13,13 +15,29 @@
 
     var pickWord = function () {
       var words = [
-        "javascript",
-        "monkey",
-        "amazing",
-        "pancake"
+        "Солнце",
+        "Кофе",
+        "Бабочка",
+        "Путешествие",
+        "Музыка",
+        "Радуга",
+        "Автомобиль",
+        "Звезда",
+        "Книга",
+        "Песня",
+        "Море",
+        "Гора",
+        "Цветок",
+        "Велосипед",
+        "Шоколад",
+        "Замок",
+        "Луна",
+        "Дождь",
+        "Океан",
+        "Ветер",
       ];
 
-      return words[Math.floor(Math.random() * words.length)];
+      return words[Math.floor(Math.random() * words.length)].toLowerCase();
     };
 
     var setupAnswerArray = function (word) {
@@ -36,7 +54,7 @@
     };
 
     var getGuess = function () {
-      return prompt("Guess a letter, or click Cancel to stop playing.");
+      return prompt("Введи букву или нажми Отмена, чтобы остановить игру.");
     };
 
     var updateGameState = function (guess, word, answerArray) {
@@ -54,14 +72,16 @@
 
     var showAnswerAndCongratulatePlayer = function (answerArray) {
       showPlayerProgress(answerArray);
-      alert("Good job! The answer was " + answerArray.join(""));
+      alert("Отличная работа! Ответ был " + answerArray.join(""));
     };
 
     var drawSegment = function (incorrectGuesses) {
       ctx.lineWidth = 4;
 
       if (incorrectGuesses === 0) {
-        ctx.strokeRect(20, 20, 20, 20);
+        ctx.beginPath();
+        ctx.arc(30, 30, 10, 0, 2 * Math.PI, false); // Параметры: центрX, центрY, радиус, начальный угол, конечный угол
+        ctx.stroke();
       } else if (incorrectGuesses === 1) {
         ctx.beginPath();
         ctx.moveTo(30, 40);
@@ -125,11 +145,12 @@
 
     drawUnderscores(word.length);
 
-    while (remainingLetters > 0) { showPlayerProgress(answerArray); var guess = getGuess();
+    while (remainingLetters > 0) { showPlayerProgress(answerArray); 
+    var guess = getGuess().toLocaleLowerCase();
       if (guess === null) {
         break;
       } else if (guess.length !== 1) {
-        alert("Please enter a single letter.");
+        alert("Пожалуйста, введи только одну букву.");
       } else {
         var correctGuesses = updateGameState(guess, word, answerArray);
 
